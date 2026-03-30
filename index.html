@@ -5,123 +5,18 @@
   <title>منصة الأول إعدادي 2</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    body {
-      font-family: "Tahoma", sans-serif;
-      background: linear-gradient(to right, #f4f6f9, #e6f0ff);
-      direction: rtl;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background: linear-gradient(to right, #004080, #0066cc);
-      color: white;
-      padding: 25px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2em;
-    }
-    .welcome {
-      display: block;
-      margin-top: 10px;
-      font-size: 1.3em;
-      font-weight: bold;
-      color: #ffcc00;
-      text-shadow: 1px 1px 3px #333;
-    }
-    nav {
-      background-color: #004080;
-      padding: 12px;
-      text-align: center;
-      display: none;
-    }
-    nav a {
-      margin: 10px;
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      padding: 8px 15px;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
-    nav a:hover {
-      background-color: #ffcc00;
-      color: #004080;
-    }
-    section {
-      margin: 30px auto;
-      width: 90%;
-      background-color: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-      display: none;
-    }
-    h2 {
-      color: #004080;
-      border-bottom: 2px solid #004080;
-      padding-bottom: 5px;
-      text-align: center;
-    }
-    table {
-      margin: 20px auto;
-      border-collapse: collapse;
-      width: 100%;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: center;
-      vertical-align: top;
-    }
-    th {
-      background-color: #004080;
-      color: white;
-    }
-    .break { background-color: #ffe6e6; font-weight: bold; color: #a00; }
-    .math { background-color: #e6f0ff; color:#004080; }
-    .science { background-color: #e6ffe6; color:#006600; }
-    .arabic { background-color: #fff0e6; color:#cc5200; }
-    .english { background-color: #f0e6ff; color:#6600cc; }
-    .religion { background-color: #fffbe6; color:#996600; }
-    .social { background-color: #e6ffff; color:#008080; }
-    .pe { background-color: #f2f2f2; color:#333; }
-    .computer { background-color: #e6f7ff; color:#004466; }
-    .reading { background-color: #f9e6ff; color:#660066; }
-    #summaries ul, #dailySummary ul { list-style: none; padding: 0; }
-    #summaries li, #dailySummary li {
-      margin: 8px 0;
-      background: #f9f9f9;
-      padding: 10px;
-      border-radius: 6px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    #lessons ul { list-style: none; padding: 0; }
-    #lessons li { margin: 10px 0; }
-    #lessons a { text-decoration: none; font-weight: bold; color: #004080; }
-    #lessons a:hover { color: #ff6600; }
-    #login input {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      width: 250px;
-      margin: 10px 0;
-    }
-    #login button {
-      padding: 10px 20px;
-      background-color: #004080;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    #login button:hover {
-      background-color: #ffcc00;
-      color: #004080;
-    }
+    body { font-family: "Tahoma", sans-serif; background: linear-gradient(to right, #f4f6f9, #e6f0ff); direction: rtl; margin: 0; padding: 0; }
+    header { background: linear-gradient(to right, #004080, #0066cc); color: white; padding: 25px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    header h1 { margin: 0; font-size: 2em; }
+    .welcome { display: block; margin-top: 10px; font-size: 1.3em; font-weight: bold; color: #ffcc00; text-shadow: 1px 1px 3px #333; }
+    nav { background-color: #004080; padding: 12px; text-align: center; display: none; }
+    nav a { margin: 10px; text-decoration: none; color: white; font-weight: bold; padding: 8px 15px; border-radius: 5px; transition: 0.3s; }
+    nav a:hover { background-color: #ffcc00; color: #004080; }
+    section { margin: 30px auto; width: 90%; background-color: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); display: none; }
+    h2 { color: #004080; border-bottom: 2px solid #004080; padding-bottom: 5px; text-align: center; }
+    #login input { padding: 10px; border: 1px solid #ccc; border-radius: 6px; width: 250px; margin: 10px 0; }
+    #login button { padding: 10px 20px; background-color: #004080; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+    #login button:hover { background-color: #ffcc00; color: #004080; }
   </style>
 </head>
 <body>
@@ -174,11 +69,7 @@
 
 <section id="lessons">
   <h2><i class="fas fa-link"></i> روابط الحصص المباشرة</h2>
-  <ul>
-    <li><a href="https://zoom.us/j/123456789" target="_blank">📘 رياضيات</a></li>
-    <li><a href="https://meet.google.com/abc-defg-hij" target="_blank">🔬 علوم</a></li>
-    <li><a href="https://zoom.us/j/987654321" target="_blank">📖 عربي</a></li>
-  </ul>
+  <ul id="links"></ul>
 </section>
 
 <section id="resources">
@@ -201,4 +92,53 @@ const summaries = {
 };
 
 function showSummary() {
-  const day = document.getElementById("daySelect").value;}
+  const day = document.getElementById("daySelect").value;
+  if (day && summaries[day]) {
+    document.getElementById("summaryResult").innerHTML =
+      "<ul><li>" + summaries[day].join("</li><li>") + "</li></ul>";
+  } else {
+    document.getElementById("summaryResult").innerHTML = "";
+  }
+}
+
+async function login() {
+  const id = document.getElementById("idNumber").value;
+  try {
+    const response = await fetch("data.json"); // تأكد من وجود الملف في نفس المجلد
+    const data = await response.json();
+
+    if (data.students[id]) {
+      const student = data.students[id];
+      document.getElementById("login").style.display = "none";
+      document.getElementById("mainNav").style.display = "block";
+      document.getElementById("schedule").style.display = "block";
+      document.getElementById("summaries").style.display = "block";
+      document.getElementById("dailySummary").style.display = "block";
+      document.getElementById("lessons").style.display = "block";
+      document.getElementById("resources").style.display = "block";
+      document.getElementById("recordings").style.display = "block";
+
+      document.querySelector("header h1").innerHTML =
+        "<i class='fas fa-school'></i> منصة الأول إعدادي 2 <br><span class='welcome'><i class='fas fa-user'></i> مرحباً " + student.name + "</span>";
+
+      // روابط الحصص من ملف JSON
+      if (student.links) {
+        let html = "";
+        for (const [subject, url] of Object.entries(student.links)) {
+          html += `<li><a href="${url}" target="_blank">${subject}</a></li>`;
+        }
+        document.getElementById("links").innerHTML = html;
+      } else {
+        document.getElementById("links").innerHTML = "<li>لا توجد روابط حصص حالياً.</li>";
+      }
+    } else {
+      document.getElementById("message").innerHTML = "⚠️ الرقم غير موجود في النظام.";
+    }
+  } catch (error) {
+    document.getElementById("message").innerHTML = "⚠️ خطأ في تحميل البيانات.";
+  }
+}
+</script>
+
+</body>
+</html>
