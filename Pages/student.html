@@ -14,7 +14,7 @@
   <script>
     async function login() {
       const id = document.getElementById("idNumber").value;
-      const response = await fetch("data.json");
+      const response = await fetch("../data.json");
       const data = await response.json();
 
       if (data.students[id]) {
