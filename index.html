@@ -145,7 +145,7 @@
 async function login() {
   const id = document.getElementById("idNumber").value;
   try {
-    const response = await fetch("data.json"); // الملف في الجذر
+const response = await fetch("data.json");
     const data = await response.json();
 
     if (data.students[id]) {
