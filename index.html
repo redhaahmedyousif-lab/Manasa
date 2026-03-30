@@ -216,6 +216,66 @@
   <div id="summaryResult"></div>
 </section>
 
+<script>
+const summaries = {
+  "الأحد": [
+    "🔬 علوم",
+    "📖 عربي 1",
+    "📘 رياضيات",
+    "📚 English (E)",
+    "📖 عربي 2",
+    "🌍 اجتماعيات",
+    "🕌 دين أ"
+  ],
+  "الإثنين": [
+    "📚 English (E)",
+    "🕌 دين",
+    "⚽ رياضة",
+    "🕌 دين أ",
+    "🌍 اجتماعيات",
+    "📘 رياضيات",
+    "📖 عربي"
+  ],
+  "الثلاثاء": [
+    "🔬 علوم",
+    "📖 عربي",
+    "📚 English (E)",
+    "💻 حاسوب",
+    "📘 رياضيات 1",
+    "📖 عربي",
+    "📘 رياضيات 2"
+  ],
+  "الأربعاء": [
+    "📖 عربي",
+    "📘 رياضيات 1",
+    "🕌 دين 1",
+    "🔬 علوم",
+    "📘 رياضيات 2",
+    "📖 Reading",
+    "🕌 دين 2"
+  ],
+  "الخميس": [
+    "🌍 اجتماعيات",
+    "⚽ رياضة",
+    "🕌 دين 1",
+    "🕌 دين 2",
+    "🔬 علوم",
+    "📘 رياضيات",
+    "📚 English (E)"
+  ]
+};
+
+function showSummary() {
+  const day = document.getElementById("daySelect").value;
+  if (day && summaries[day]) {
+    document.getElementById("summaryResult").innerHTML =
+      "<ul><li>" + summaries[day].join("</li><li>") + "</li></ul>";
+  } else {
+    document.getElementById("summaryResult").innerHTML = "";
+  }
+}
+</script>
+
 <section id="lessons">
   <h2><i class="fas fa-link"></i> روابط الحصص المباشرة</h2>
   <ul id="links"></ul>
@@ -231,14 +291,7 @@
   <p>هنا تضع روابط التسجيلات.</p>
 </section>
 
-<script>
-const summaries = {
-  "الأحد": ["📘 رياضيات: مراجعة الكسور","🔬 علوم: الجهاز التنفسي","📖 عربي: نص قصير"],
-  "الإثنين": ["📘 رياضيات: مسائل الجمع","🕌 دين: أحكام الصلاة","🌍 اجتماعيات: الحضارة الإسلامية"],
-  "الثلاثاء": ["📘 رياضيات: ضرب وقسمة","🔬 علوم: دورة الماء","📖 عربي: تحليل نص"],
-  "الأربعاء": ["📘 رياضيات: مراجعة عامة","🔬 علوم: الطاقة","📖 Reading: نص إنجليزي"],
-  "الخميس": ["📘 رياضيات: مراجعة شاملة","🔬 علوم: مراجعة","🕌 دين: مراجعة الفقه"]
-};
+
 
 function showSummary() {
   const day = document.getElementById("daySelect").value;
