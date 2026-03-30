@@ -203,6 +203,91 @@
     </tr>
   </table>
 </section>
+<section id="summaries">
+  <h2><i class="fas fa-file-alt"></i> ملخصات الحصص</h2>
+  <div>
+    <h3>📘 رياضيات</h3>
+    <ul>
+      <li>الأحد: مراجعة الكسور</li>
+      <li>الإثنين: مسائل الجمع والطرح</li>
+      <li>الثلاثاء: ضرب وقسمة</li>
+      <li>الأربعاء: مراجعة عامة</li>
+      <li>الخميس: مراجعة شاملة</li>
+    </ul>
+
+    <h3>🔬 علوم</h3>
+    <ul>
+      <li>الأحد: الجهاز التنفسي</li>
+      <li>الإثنين: الجهاز الهضمي</li>
+      <li>الثلاثاء: دورة الماء</li>
+      <li>الأربعاء: الطاقة</li>
+      <li>الخميس: مراجعة</li>
+    </ul>
+
+    <h3>📖 عربي</h3>
+    <ul>
+      <li>الأحد: نص قصير</li>
+      <li>الإثنين: تدريبات قواعد</li>
+      <li>الثلاثاء: تحليل نص</li>
+      <li>الأربعاء: مراجعة عامة</li>
+      <li>الخميس: تدريبات شاملة</li>
+    </ul>
+  </div>
+</section>
+
+<section id="dailySummary">
+  <h2><i class="fas fa-calendar-day"></i> ملخص اليوم</h2>
+  <label for="daySelect">اختر اليوم:</label>
+  <select id="daySelect" onchange="showSummary()">
+    <option value="">-- اختر --</option>
+    <option value="الأحد">الأحد</option>
+    <option value="الإثنين">الإثنين</option>
+    <option value="الثلاثاء">الثلاثاء</option>
+    <option value="الأربعاء">الأربعاء</option>
+    <option value="الخميس">الخميس</option>
+  </select>
+  <div id="summaryResult"></div>
+</section>
+
+<script>
+const summaries = {
+  "الأحد": [
+    "📘 رياضيات: مراجعة الكسور",
+    "🔬 علوم: الجهاز التنفسي",
+    "📖 عربي: نص قصير"
+  ],
+  "الإثنين": [
+    "📘 رياضيات: مسائل الجمع",
+    "🕌 دين: أحكام الصلاة",
+    "🌍 اجتماعيات: الحضارة الإسلامية"
+  ],
+  "الثلاثاء": [
+    "📘 رياضيات: ضرب وقسمة",
+    "🔬 علوم: دورة الماء",
+    "📖 عربي: تحليل نص"
+  ],
+  "الأربعاء": [
+    "📘 رياضيات: مراجعة عامة",
+    "🔬 علوم: الطاقة",
+    "📖 Reading: نص إنجليزي"
+  ],
+  "الخميس": [
+    "📘 رياضيات: مراجعة شاملة",
+    "🔬 علوم: مراجعة",
+    "🕌 دين: مراجعة الفقه"
+  ]
+};
+
+function showSummary() {
+  const day = document.getElementById("daySelect").value;
+  if (day && summaries[day]) {
+    document.getElementById("summaryResult").innerHTML =
+      "<ul><li>" + summaries[day].join("</li><li>") + "</li></ul>";
+  } else {
+    document.getElementById("summaryResult").innerHTML = "";
+  }
+}
+</script>
 
 <section id="lessons">
   <h2><i class="fas fa-link"></i> روابط الحصص المباشرة</h2>
