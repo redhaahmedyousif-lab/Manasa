@@ -2,33 +2,17 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>لوحة الطالب</title>
+  <title>لوحة المعلم</title>
 </head>
 <body>
-  <h2>لوحة الطالب</h2>
-  <input type="text" id="idNumber" placeholder="أدخل رقمك الشخصي">
-  <button onclick="login()">دخول</button>
-
-  <div id="info"></div>
+  <h2>لوحة المعلم</h2>
+  <p>هنا يقدر المعلم يعدل بيانات الطلاب عن طريق تحديث ملف <b>data.json</b> في المشروع.</p>
 
   <!-- زر الرجوع -->
   <br><br>
   <button onclick="location.href='../index.html'">⬅️ رجوع إلى الصفحة الرئيسية</button>
-
-  <script>
-    async function login() {
-      const id = document.getElementById("idNumber").value;
-      const response = await fetch("../data.json"); // لأن الملف خارج مجلد Pages
-      const data = await response.json();
-
-      if (data.students[id]) {
-        document.getElementById("info").innerHTML =
-          "مرحباً " + data.students[id].name + "<br>صفك: " + data.students[id].class +
-          "<br>حصصك: " + data.students[id].lessons.join(", ");
-      } else {
-        document.getElementById("info").innerHTML = "الرقم غير موجود.";
-      }
-    }
+</body>
+</html>
   </script>
 </body>
 </html>
