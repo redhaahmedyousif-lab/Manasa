@@ -23,14 +23,14 @@
       margin-top: 10px;
       font-size: 1.4em;
       font-weight: bold;
-      color: #ffcc00; /* أصفر ذهبي */
+      color: #ffcc00;
       text-shadow: 1px 1px 3px #333;
     }
     nav {
       background-color: #e6e6e6;
       padding: 10px;
       text-align: center;
-      display: none; /* مخفي مبدئياً */
+      display: none;
     }
     nav a {
       margin: 10px;
@@ -52,7 +52,7 @@
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      display: none; /* مخفي مبدئياً */
+      display: none;
     }
     h2 {
       color: #004080;
@@ -88,6 +88,10 @@
     .pe { background-color: #f2f2f2; color:#333; }
     .computer { background-color: #e6f7ff; color:#004466; }
     .reading { background-color: #f9e6ff; color:#660066; }
+    #lessons ul { list-style: none; padding: 0; }
+    #lessons li { margin: 10px 0; }
+    #lessons a { text-decoration: none; font-weight: bold; color: #004080; }
+    #lessons a:hover { color: #ff6600; }
   </style>
 </head>
 <body>
@@ -106,8 +110,8 @@
 
 <nav id="mainNav">
   <a href="#teacher"><i class="fas fa-chalkboard-teacher"></i> لوحة المعلم</a>
-  <a href="#student"><i class="fas fa-user-graduate"></i> لوحة الطالب</a>
   <a href="#schedule"><i class="fas fa-calendar-alt"></i> جدول الحصص</a>
+  <a href="#lessons"><i class="fas fa-link"></i> روابط الحصص</a>
   <a href="#resources"><i class="fas fa-book"></i> المكتبة</a>
   <a href="#recordings"><i class="fas fa-video"></i> التسجيلات</a>
 </nav>
@@ -117,14 +121,17 @@
   <p>هذه لوحة المعلم، تعرض بيانات الطلاب وجدول الحصص.</p>
 </section>
 
-<section id="student">
-  <h2><i class="fas fa-user-graduate"></i> لوحة الطالب</h2>
-  <p>يمكنك الدخول إلى الحصص المباشرة، مشاهدة التسجيلات، وتحميل المذكرات.</p>
-</section>
-
 <section id="schedule">
   <h2><i class="fas fa-calendar-alt"></i> جدول الحصص الأسبوعي</h2>
-  <table><section id="schedule">
+  <table>
+    <!-- الجدول كامل مثل ما طرشته يبقى هنا -->
+  </table>
+</section>
+
+<section id="lessons">
+  <h2><i class="fas fa-link"></i> روابط الحصص المباشرة</h2>
+  <ul id="links">
+<section id="schedule">
   <h2><i class="fas fa-calendar-alt"></i> جدول الحصص الأسبوعي</h2>
   <table>
     <tr>
@@ -206,8 +213,7 @@
     </tr>
   </table>
 </section>
-
-  </table>
+  </ul>
 </section>
 
 <section id="resources">
@@ -224,33 +230,43 @@
 async function login() {
   const id = document.getElementById("idNumber").value;
   try {
-const response = await fetch("data.json");
+    const response = await fetch("data.json"); // عدل المسار إذا الصفحة داخل مجلد Pages
     const data = await response.json();
 
     if (data.students[id]) {
-      // طالب
+      const student = data.students[id];
       document.getElementById("login").style.display = "none";
       document.getElementById("mainNav").style.display = "block";
-      document.getElementById("student").style.display = "block";
       document.getElementById("schedule").style.display = "block";
+      document.getElementById("lessons").style.display = "block";
       document.getElementById("resources").style.display = "block";
       document.getElementById("recordings").style.display = "block";
 
-      // ترحيب بالاسم مع أيقونة
       document.querySelector("header h1").innerHTML =
-        "<i class='fas fa-school'></i> منصة الأول إعدادي 2 <br><span class='welcome'><i class='fas fa-user'></i> مرحباً " + data.students[id].name + "</span>";
+        "<i class='fas fa-school'></i> منصة الأول إعدادي 2 <br><span class='welcome'><i class='fas fa-user'></i> مرحباً " + student.name + "</span>";
+
+      // روابط الحصص من ملف JSON إذا موجودة
+      if (student.links) {
+        let html = "";
+        for (const [subject, url] of Object.entries(student.links)) {
+          html += `<li><a href="${url}" target="_blank">📘 ${subject}</a></li>`;
+        }
+        document.getElementById("links").innerHTML = html;
+      } else {
+        document.getElementById("links").innerHTML = "<li>لا توجد روابط حصص حالياً.</li>";
+      }
     } else if (data.teachers[id]) {
-      // معلم
+      const teacher = data.teachers[id];
       document.getElementById("login").style.display = "none";
       document.getElementById("mainNav").style.display = "block";
       document.getElementById("teacher").style.display = "block";
       document.getElementById("schedule").style.display = "block";
+      document.getElementById("lessons").style.display = "block";
       document.getElementById("resources").style.display = "block";
       document.getElementById("recordings").style.display = "block";
 
-      // ترحيب بالاسم مع أيقونة
       document.querySelector("header h1").innerHTML =
-        "<i class='fas fa-school'></i> منصة الأول إعدادي 2 <br><span class='welcome'><i class='fas fa-chalkboard-teacher'></i> مرحباً " + data.teachers[id].name + "</span>";
+        "<i class='fas fa-school'></i> منصة الأول إعدادي 2 <br><span class='welcome'><i class='fas fa-chalkboard-teacher'></i> مرحباً " + teacher.name + "</span>";
     } else {
       document.getElementById("message").innerHTML = "⚠️ الرقم غير موجود في النظام.";
     }
