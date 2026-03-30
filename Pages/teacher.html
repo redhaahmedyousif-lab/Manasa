@@ -6,10 +6,35 @@
 </head>
 <body>
   <h2>لوحة المعلم</h2>
-  <p>هنا يقدر المعلم يعدل بيانات الطلاب عن طريق تحديث ملف <b>data.json</b> في المشروع.</p>
+  <div id="studentsTable"></div>
 
-  <!-- زر الرجوع -->
-  <br><br>
-  <button onclick="location.href='../index.html'">⬅️ رجوع إلى الصفحة الرئيسية</button>
+  <script>
+    async function loadStudents() {
+      try {
+        const response = await fetch("../data.json"); // الملف في الجذر
+        const data = await response.json();
+
+        let table = "<table border='1' style='border-collapse:collapse; text-align:center;'>";
+        table += "<tr><th>الرقم</th><th>الاسم</th><th>الصف</th><th>الحصص</th></tr>";
+
+        for (const id in data.students) {
+          const student = data.students[id];
+          table += `<tr>
+                      <td>${id}</td>
+                      <td>${student.name}</td>
+                      <td>${student.class}</td>
+                      <td>${student.lessons.join(", ")}</td>
+                    </tr>`;
+        }
+
+        table += "</table>";
+        document.getElementById("studentsTable").innerHTML = table;
+      } catch (error) {
+        document.getElementById("studentsTable").innerHTML = "⚠️ خطأ في تحميل بيانات الطلاب.";
+      }
+    }
+
+    loadStudents();
+  </script>
 </body>
 </html>
