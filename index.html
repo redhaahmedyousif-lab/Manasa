@@ -125,12 +125,12 @@ th {
     <!-- الثلاثاء -->
     <tr>
       <td>الثلاثاء</td>
+      <td class="religion"><div class="subject">دين</div><div class="teacher">محمد صليل</div></td>
       <td class="science"><div class="subject">علوم</div><div class="teacher">محمد إبراهيم</div></td>
-      <td class="arabic"><div class="subject">عربي</div><div class="teacher">راضي الماحوزي</div></td>
       <td class="break">فسحة</td>
+      <td class="arabic"><div class="subject">عربي</div><div class="teacher">راضي الماحوزي</div></td>
       <td class="english"><div class="subject">E</div><div class="teacher">مرسي محمد</div></td>
       <td class="computer"><div class="subject">حاسوب/ديكور</div><div class="teacher">إبراهيم الشافعي & أحمد الصباح</div></td>
-      <td class="math"><div class="subject">رياضيات</div><div class="teacher">قاسم العويناتي</div></td>
       <td class="break">للصلاة</td>
       <td class="arabic"><div class="subject">عربي</div><div class="teacher">راضي الماحوزي</div></td>
       <td class="math"><div class="subject">رياضيات</div><div class="teacher">قاسم العويناتي</div></td>
@@ -138,8 +138,8 @@ th {
     <!-- الأربعاء -->
     <tr>
       <td>الأربعاء</td>
-      <td class="arabic"><div class="subject">عربي</div><div class="teacher">راضي الماحوزي</div></td>
       <td class="math"><div class="subject">رياضيات</div><div class="teacher">قاسم العويناتي</div></td>
+      <td class="arabic"><div class="subject">عربي</div><div class="teacher">راضي الماحوزي</div></td>
       <td class="break">فسحة</td>
       <td class="religion"><div class="subject">دين</div><div class="teacher">محمد صليل</div></td>
       <td class="science"><div class="subject">علوم</div><div class="teacher">محمد إبراهيم</div></td>
@@ -223,11 +223,17 @@ th {
 
   <h3>🕌 دين</h3>
   <ul>
-    <li>الأحد: أحكام الطهارة</li>
-    <li>الإثنين: أحكام الصلاة</li>
-    <li>الثلاثاء: السيرة النبوية</li>
+    <li>الإثنين:  </li>
+    <li>الثلاثاء 31 مارس: تكملة درس سورة ق 2 من آية 27 الى 35 وكتابة الواجب  </li>
     <li>الأربعاء: العقيدة</li>
     <li>الخميس: مراجعة عامة</li>
+  </ul>
+
+ <h3>🕌  أ دين</h3>
+  <ul>
+    <li>الأحد: أحكام الطهارة</li>
+    <li>الإثنين: أحكام الصلاة</li>
+
   </ul>
 
   <h3>💻 حاسوب</h3>
@@ -239,20 +245,15 @@ th {
     <li>الخميس: مراجعة عامة</li>
   </ul>
 </section>
-
 <section id="dailySummary">
   <h2><i class="fas fa-calendar-day"></i> ملخص اليوم</h2>
-  <label for="daySelect">اختر اليوم:</label>
+  <label for="daySelect">اختر التاريخ:</label>
   <select id="daySelect" onchange="showSummary()">
     <option value="">-- اختر --</option>
-    <option value="الأحد">الأحد</option>
-    <option value="الإثنين">الإثنين</option>
-    <option value="الثلاثاء">الثلاثاء</option>
-    <option value="الأربعاء">الأربعاء</option>
-    <option value="الخميس">الخميس</option>
   </select>
   <div id="summaryResult"></div>
 </section>
+
 
 <section id="lessons">
   <h2><i class="fas fa-link"></i> روابط الحصص المباشرة</h2>
@@ -336,7 +337,9 @@ th {
   </ul>
 </section>
 
+
 <script>
+// جدول الحصص لكل يوم
 const summaries = {
   "الأحد": [
     "🔬 علوم",
@@ -357,17 +360,17 @@ const summaries = {
     "📖 عربي"
   ],
   "الثلاثاء": [
+    "🕌 دين",
     "🔬 علوم",
     "📖 عربي",
     "📚 English (E)",
     "💻 حاسوب",
-    "📘 رياضيات 1",
     "📖 عربي",
-    "📘 رياضيات 2"
+    "📘 رياضيات"
   ],
   "الأربعاء": [
-    "📖 عربي",
     "📘 رياضيات 1",
+    "📖 عربي",
     "🕌 دين 1",
     "🔬 علوم",
     "📘 رياضيات 2",
@@ -385,15 +388,41 @@ const summaries = {
   ]
 };
 
-function showSummary() {
-  const day = document.getElementById("daySelect").value;
-  if (day && summaries[day]) {
-    document.getElementById("summaryResult").innerHTML =
-      "<ul><li>" + summaries[day].join("</li><li>") + "</li></ul>";
-  } else {
-    document.getElementById("summaryResult").innerHTML = "";
+// توليد قائمة التواريخ من 31 مارس إلى 30 أبريل (بدون جمعة وسبت)
+function generateDates() {
+  const select = document.getElementById("daySelect");
+  const start = new Date(2026, 2, 31); // 31 مارس
+  const end = new Date(2026, 3, 30);   // 30 أبريل
+
+  for (let d = start; d <= end; d.setDate(d.getDate() + 1)) {
+    const dayName = d.toLocaleDateString("ar-EG", { weekday: "long" });
+    if (dayName !== "الجمعة" && dayName !== "السبت") {
+      const dateStr = d.toLocaleDateString("ar-EG");
+      const option = document.createElement("option");
+      option.value = dayName + "|" + dateStr;
+      option.textContent = dayName + " - " + dateStr;
+      select.appendChild(option);
+    }
   }
 }
+
+function showSummary() {
+  const value = document.getElementById("daySelect").value;
+  if (!value) return;
+  const [dayName, dateStr] = value.split("|");
+  const lessons = summaries[dayName];
+  if (lessons) {
+    document.getElementById("summaryResult").innerHTML =
+      "<h3>ملخص " + dayName + " (" + dateStr + ")</h3><ul><li>" +
+      lessons.join("</li><li>") + "</li></ul>";
+  } else {
+    document.getElementById("summaryResult").innerHTML =
+      "<p>لا يوجد ملخص لهذا اليوم.</p>";
+  }
+}
+
+// تشغيل عند تحميل الصفحة
+generateDates();
 
 async function login() {
   const id = document.getElementById("idNumber").value;
