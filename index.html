@@ -171,7 +171,7 @@ th {
   <ul>
     <li>الأحد: الجهاز التنفسي</li>
     <li>الإثنين: الجهاز الهضمي</li>
-    <li>الثلاثاء: دورة الماء</li>
+    <li>الثلاثاء: الطيور والثديات تم الانتهاء بقيت لخر نقطة</li>
     <li>الأربعاء: الطاقة</li>
     <li>الخميس: مراجعة عامة</li>
   </ul>
@@ -244,15 +244,21 @@ th {
     <li>الأربعاء: الإنترنت الآمن</li>
     <li>الخميس: مراجعة عامة</li>
   </ul>
+</section>
+
 <section id="dailySummary">
   <h2><i class="fas fa-calendar-day"></i> ملخص اليوم</h2>
-  <label for="daySelect">اختر التاريخ:</label>
+  <label for="daySelect">اختر اليوم:</label>
   <select id="daySelect" onchange="showSummary()">
     <option value="">-- اختر --</option>
+    <option value="الأحد">الأحد</option>
+    <option value="الإثنين">الإثنين</option>
+    <option value="الثلاثاء">الثلاثاء</option>
+    <option value="الأربعاء">الأربعاء</option>
+    <option value="الخميس">الخميس</option>
   </select>
   <div id="summaryResult"></div>
 </section>
-
 
 <section id="lessons">
   <h2><i class="fas fa-link"></i> روابط الحصص المباشرة</h2>
@@ -336,9 +342,7 @@ th {
   </ul>
 </section>
 
-
 <script>
-// جدول الحصص لكل يوم
 const summaries = {
   "الأحد": [
     "🔬 علوم",
@@ -359,7 +363,7 @@ const summaries = {
     "📖 عربي"
   ],
   "الثلاثاء": [
-    "🕌 دين",
+    "🕌  دين",
     "🔬 علوم",
     "📖 عربي",
     "📚 English (E)",
@@ -368,7 +372,7 @@ const summaries = {
     "📘 رياضيات"
   ],
   "الأربعاء": [
-    "📘 رياضيات 1",
+    "📘  رياضيات 1",
     "📖 عربي",
     "🕌 دين 1",
     "🔬 علوم",
@@ -387,53 +391,15 @@ const summaries = {
   ]
 };
 
-<script>
-let summariesData = {};
-
-async function loadSummaries() {
-  const response = await fetch("summaries.json"); // ملف خارجي فيه الملخصات
-  summariesData = await response.json();
-
-  const select = document.getElementById("daySelect");
-
-  // توليد قائمة التواريخ من 31 مارس إلى 30 أبريل
-  const start = new Date(2026, 2, 31); // 31 مارس
-  const end = new Date(2026, 3, 30);   // 30 أبريل
-
-  for (let d = start; d <= end; d.setDate(d.getDate() + 1)) {
-    const dayName = d.toLocaleDateString("ar-EG", { weekday: "long" });
-    if (dayName !== "الجمعة" && dayName !== "السبت") {
-      const dateStr = d.toISOString().split("T")[0]; // صيغة YYYY-MM-DD
-      if (summariesData[dateStr]) {
-        const option = document.createElement("option");
-        option.value = dateStr;
-        option.textContent = dayName + " - " + d.toLocaleDateString("ar-EG");
-        select.appendChild(option);
-      }
-    }
-  }
-}
-
 function showSummary() {
-  const date = document.getElementById("daySelect").value;
-  if (!date) return;
-
-  const summary = summariesData[date];
-  if (summary) {
-    let html = "<h3>ملخص " + summary.day + " (" + date + ")</h3><ul>";
-    summary.lessons.forEach(l => {
-      html += "<li>" + l.subject + " – " + l.summary + "</li>";
-    });
-    html += "</ul>";
-    document.getElementById("summaryResult").innerHTML = html;
-  } else {
+  const day = document.getElementById("daySelect").value;
+  if (day && summaries[day]) {
     document.getElementById("summaryResult").innerHTML =
-      "<p>لا يوجد ملخص لهذا اليوم.</p>";
+      "<ul><li>" + summaries[day].join("</li><li>") + "</li></ul>";
+  } else {
+    document.getElementById("summaryResult").innerHTML = "";
   }
 }
-
-// تشغيل عند تحميل الصفحة
-loadSummaries();
 
 async function login() {
   const id = document.getElementById("idNumber").value;
