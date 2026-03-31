@@ -244,7 +244,6 @@ th {
     <li>الأربعاء: الإنترنت الآمن</li>
     <li>الخميس: مراجعة عامة</li>
   </ul>
-</section>
 <section id="dailySummary">
   <h2><i class="fas fa-calendar-day"></i> ملخص اليوم</h2>
   <label for="daySelect">اختر التاريخ:</label>
@@ -388,33 +387,45 @@ const summaries = {
   ]
 };
 
-// توليد قائمة التواريخ من 31 مارس إلى 30 أبريل (بدون جمعة وسبت)
-function generateDates() {
+<script>
+let summariesData = {};
+
+async function loadSummaries() {
+  const response = await fetch("summaries.json"); // ملف خارجي فيه الملخصات
+  summariesData = await response.json();
+
   const select = document.getElementById("daySelect");
+
+  // توليد قائمة التواريخ من 31 مارس إلى 30 أبريل
   const start = new Date(2026, 2, 31); // 31 مارس
   const end = new Date(2026, 3, 30);   // 30 أبريل
 
   for (let d = start; d <= end; d.setDate(d.getDate() + 1)) {
     const dayName = d.toLocaleDateString("ar-EG", { weekday: "long" });
     if (dayName !== "الجمعة" && dayName !== "السبت") {
-      const dateStr = d.toLocaleDateString("ar-EG");
-      const option = document.createElement("option");
-      option.value = dayName + "|" + dateStr;
-      option.textContent = dayName + " - " + dateStr;
-      select.appendChild(option);
+      const dateStr = d.toISOString().split("T")[0]; // صيغة YYYY-MM-DD
+      if (summariesData[dateStr]) {
+        const option = document.createElement("option");
+        option.value = dateStr;
+        option.textContent = dayName + " - " + d.toLocaleDateString("ar-EG");
+        select.appendChild(option);
+      }
     }
   }
 }
 
 function showSummary() {
-  const value = document.getElementById("daySelect").value;
-  if (!value) return;
-  const [dayName, dateStr] = value.split("|");
-  const lessons = summaries[dayName];
-  if (lessons) {
-    document.getElementById("summaryResult").innerHTML =
-      "<h3>ملخص " + dayName + " (" + dateStr + ")</h3><ul><li>" +
-      lessons.join("</li><li>") + "</li></ul>";
+  const date = document.getElementById("daySelect").value;
+  if (!date) return;
+
+  const summary = summariesData[date];
+  if (summary) {
+    let html = "<h3>ملخص " + summary.day + " (" + date + ")</h3><ul>";
+    summary.lessons.forEach(l => {
+      html += "<li>" + l.subject + " – " + l.summary + "</li>";
+    });
+    html += "</ul>";
+    document.getElementById("summaryResult").innerHTML = html;
   } else {
     document.getElementById("summaryResult").innerHTML =
       "<p>لا يوجد ملخص لهذا اليوم.</p>";
@@ -422,7 +433,7 @@ function showSummary() {
 }
 
 // تشغيل عند تحميل الصفحة
-generateDates();
+loadSummaries();
 
 async function login() {
   const id = document.getElementById("idNumber").value;

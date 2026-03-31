@@ -1,0 +1,63 @@
+{
+  "2026-03-31": {
+    "day": "الثلاثاء",
+    "lessons": [
+      { "subject": "🕌 دين", "summary": "أحكام الطهارة" },
+      { "subject": "🔬 علوم", "summary": "دورة الماء" },
+      { "subject": "📖 عربي", "summary": "تحليل نص قصير" },
+      { "subject": "📚 English (E)", "summary": "Grammar: Present Simple" },
+      { "subject": "💻 حاسوب", "summary": "أساسيات الحاسوب" },
+      { "subject": "📘 رياضيات 1", "summary": "مسائل الجمع والطرح" },
+      { "subject": "📖 عربي", "summary": "تدريبات قواعد" },
+      { "subject": "📘 رياضيات 2", "summary": "مراجعة عامة" }
+    ]
+  },
+  "2026-04-01": {
+    "day": "الأربعاء",
+    "lessons": [
+      { "subject": "📘 رياضيات 1", "summary": "الكسور العشرية" },
+      { "subject": "📖 عربي", "summary": "قراءة نص" },
+      { "subject": "🕌 دين 1", "summary": "أحكام الطهارة" },
+      { "subject": "🔬 علوم", "summary": "الجهاز التنفسي" },
+      { "subject": "📘 رياضيات 2", "summary": "مسائل ضرب" },
+      { "subject": "📖 Reading", "summary": "Short Story" },
+      { "subject": "🕌 دين 2", "summary": "العقيدة" }
+    ]
+  },
+  "2026-04-02": {
+    "day": "الخميس",
+    "lessons": [
+      { "subject": "🌍 اجتماعيات", "summary": "الحضارة الإسلامية" },
+      { "subject": "⚽ رياضة", "summary": "تمارين كرة القدم" },
+      { "subject": "🕌 دين 1", "summary": "أحكام الصلاة" },
+      { "subject": "🕌 دين 2", "summary": "السيرة النبوية" },
+      { "subject": "🔬 علوم", "summary": "الطاقة" },
+      { "subject": "📘 رياضيات", "summary": "مراجعة الكسور" },
+      { "subject": "📚 English (E)", "summary": "Vocabulary" }
+    ]
+  },
+  "2026-04-05": {
+    "day": "الأحد",
+    "lessons": [
+      { "subject": "🔬 علوم", "summary": "التجربة العملية" },
+      { "subject": "📖 عربي 1", "summary": "نصوص أدبية" },
+      { "subject": "📘 رياضيات", "summary": "المعادلات البسيطة" },
+      { "subject": "📚 English (E)", "summary": "Speaking practice" },
+      { "subject": "📖 عربي 2", "summary": "قواعد نحوية" },
+      { "subject": "🌍 اجتماعيات", "summary": "الجغرافيا الطبيعية" },
+      { "subject": "🕌 دين أ", "summary": "الحديث الشريف" }
+    ]
+  },
+  "2026-04-06": {
+    "day": "الإثنين",
+    "lessons": [
+      { "subject": "📚 English (E)", "summary": "Listening" },
+      { "subject": "🕌 دين", "summary": "الفقه" },
+      { "subject": "⚽ رياضة", "summary": "تمارين اللياقة" },
+      { "subject": "🕌 دين أ", "summary": "العقيدة" },
+      { "subject": "🌍 اجتماعيات", "summary": "التاريخ الحديث" },
+      { "subject": "📘 رياضيات", "summary": "الهندسة" },
+      { "subject": "📖 عربي", "summary": "إملاء" }
+    ]
+  }
+}
